@@ -95,7 +95,7 @@
 								if (!skel.vars.mobile
 								&&	!skel.breakpoint('large').active
 								&&	skel.vars.IEVersion > 9)
-									$banner.append('<video autoplay loop><source src="' + video + '.mp4" type="video/mp4" /><source src="' + video + '.webm" type="video/webm" /></video>');
+									$banner.append('<video autoplay muted loop><source src="' + video + '.mp4" type="video/mp4" /><source src="' + video + '.webm" type="video/webm" /></video>');
 
 						});
 
@@ -145,3 +145,19 @@
 	});
 
 })(jQuery);
+
+var prevScrollpos = window.pageYOffset;
+var screenWidth = document.documentElement.clientWidth;
+
+window.onscroll = function() {
+
+	if (screenWidth < 866) {
+		var currentScrollPos = window.pageYOffset;
+		if ((prevScrollpos > currentScrollPos)) {
+			document.getElementById("header").style.top = "0";
+		} else {
+			document.getElementById("header").style.top = "-80px";
+		}
+		prevScrollpos = currentScrollPos;
+	}
+}
